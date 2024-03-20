@@ -1,6 +1,32 @@
 #include <iostream>
 
+#include "CircularBuffer.cpp"
+
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+
+    CircularBuffer<int> buffer(5);
+
+    buffer.push(1);
+    buffer.push(2);
+    buffer.push(3);
+    buffer.push(4);
+    buffer.push(5);
+    buffer.printHT();
+
+    int a;
+    a = buffer.pop();
+    a = buffer.pop();
+    a = buffer.pop();
+//    a = buffer.pop();
+    a = buffer.pop();
+
+    buffer.printHT();
+    buffer.printCount();
+
+    std::cout << a  << std::endl;
+
+
     return 0;
+
+
 }
