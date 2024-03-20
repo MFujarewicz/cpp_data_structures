@@ -1,5 +1,5 @@
-mkdir build
-cd build
-cmake ..
-make
-./cpp_projekt
+    mkdir build
+    cd build
+    cmake ..
+    make
+    ./cpp_projekt
