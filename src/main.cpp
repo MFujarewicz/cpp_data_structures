@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "CircularBuffer.cpp"
+#include "circularBuffer.cpp"
 
 int main() {
 

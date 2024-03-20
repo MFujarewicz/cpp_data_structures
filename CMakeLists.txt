@@ -3,6 +3,6 @@ project(cpp_projekt)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(cpp_projekt main.cpp
-        circularBuffer.cpp
+add_executable(cpp_projekt src/main.cpp
+        src/circularBuffer.cpp
 )
