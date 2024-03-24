@@ -2,7 +2,6 @@
 #define DEBUG_PRINT false
 
 
-
 template<typename T>
 CircularBuffer<T>::CircularBuffer(size_t _capacity):
         data(_capacity), head(0), tail(0), capacity(_capacity), count(0) {}
