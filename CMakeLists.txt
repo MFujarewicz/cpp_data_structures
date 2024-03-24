@@ -8,4 +8,6 @@ add_executable(cpp_projekt src/main.cpp
         src/circularBuffer.ipp
         src/queue.hpp
         src/queue.ipp
+        src/hashMap.ipp
+        src/hashMap.hpp
 )
