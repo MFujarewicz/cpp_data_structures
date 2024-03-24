@@ -6,4 +6,6 @@ set(CMAKE_CXX_STANDARD 17)
 add_executable(cpp_projekt src/main.cpp
         src/circularBuffer.hpp
         src/circularBuffer.ipp
+        src/queue.hpp
+        src/queue.ipp
 )
