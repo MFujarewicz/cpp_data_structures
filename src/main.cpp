@@ -10,9 +10,14 @@ int main() {
     queue.enqueue(2);
     auto a = queue.dequeue();
     auto b = queue.dequeue();
+    queue.enqueue(3);
+    auto c = queue.dequeue();
+
 
     std::cout << a << std::endl;
     std::cout << b << std::endl;
+    std::cout << c << std::endl;
+
 
 
 

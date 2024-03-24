@@ -34,6 +34,7 @@ Queue<T>::Queue():count(0), headPtr(nullptr), tailPtr(nullptr) {
 
 template<typename T>
 void Queue<T>::enqueue(const T &value) {
+    std::lock_guard<std::mutex> lock(mutex);
 
     QueueNode<T> *nodePtr = new QueueNode(value);
 
@@ -50,6 +51,7 @@ void Queue<T>::enqueue(const T &value) {
 
 template<typename T>
 T Queue<T>::dequeue() {
+    std::lock_guard<std::mutex> lock(mutex);
 
     if (isEmpty()) throw std::runtime_error("Queue buffer is empty");
 
