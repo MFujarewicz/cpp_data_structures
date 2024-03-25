@@ -10,6 +10,7 @@ private:
     KeyType key;
     ValueType value;
     Node<KeyType, ValueType>* next;
+    void resize();
 public:
     Node(KeyType _key, ValueType _value);
     ValueType getValue();
@@ -18,7 +19,6 @@ public:
     void setValue(const ValueType &value);
     Node<KeyType, ValueType>* getNext();
 };
-
 
 
 template<typename KeyType, typename ValueType>
