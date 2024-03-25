@@ -7,7 +7,24 @@
 
 
 template<typename T>
-class CircularBuffer {
+class CircularBufferAbstract {
+public:
+
+    virtual void push(const T& value) = 0;
+
+    virtual T pop() = 0;
+
+    virtual T getHeadValue() = 0;
+
+    virtual T getTailValue() = 0;
+
+    virtual bool isFull() = 0;
+
+    virtual bool isEmpty() = 0;
+};
+
+template<typename T>
+class CircularBuffer : public CircularBufferAbstract<T>{
 private:
     std::vector<T> data;
     size_t head;
