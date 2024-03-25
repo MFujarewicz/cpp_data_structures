@@ -10,7 +10,6 @@ private:
     KeyType key;
     ValueType value;
     Node<KeyType, ValueType>* next;
-    void resize();
 public:
     Node(KeyType _key, ValueType _value);
     ValueType getValue();
@@ -28,6 +27,7 @@ private:
     std::mutex mutex;
     Node<KeyType, ValueType>** buckets;
     size_t capacity;
+    void resize();
 
     static const int INITIAL_CAPACITY = 16;
     constexpr static const double LOAD_FACTOR_THRESHOLD = 0.75;

@@ -19,7 +19,7 @@ void Node<KeyType, ValueType>::setNext(Node<KeyType, ValueType> *_next) {
 }
 
 template<typename KeyType, typename ValueType>
-void Node<KeyType, ValueType>::resize() {
+void HashMap<KeyType, ValueType>::resize() {
 
 }
 
