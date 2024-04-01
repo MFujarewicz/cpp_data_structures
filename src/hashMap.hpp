@@ -35,6 +35,10 @@ private:
 public:
     HashMap();
 
+    size_t getCurrentSize();
+
+    size_t getCount();
+
     void put(const KeyType &key, const ValueType &value);
 
     ValueType get(const KeyType &key);

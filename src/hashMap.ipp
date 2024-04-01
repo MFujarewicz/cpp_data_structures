@@ -3,8 +3,6 @@
 #define DEBUG_PRINT false
 
 
-
-
 template<typename KeyType, typename ValueType>
 Node<KeyType, ValueType>::Node(KeyType _key, ValueType _value):value(_value), key(_key), next(nullptr) {}
 
@@ -21,6 +19,29 @@ void Node<KeyType, ValueType>::setNext(Node<KeyType, ValueType> *_next) {
 template<typename KeyType, typename ValueType>
 void HashMap<KeyType, ValueType>::resize() {
 
+    size_t newCapacity = capacity * 2;
+    Node<KeyType, ValueType> **newBuckets = new Node<KeyType, ValueType> *[newCapacity];
+
+    for (size_t i = 0; i < newCapacity; i++) {
+        newBuckets[i] = nullptr;
+    }
+
+    for (size_t i = 0; i < capacity; i++) {
+        Node<KeyType, ValueType> *oldNode = buckets[i];
+        while (oldNode != nullptr) {
+            size_t newIndex = std::hash<KeyType>{}(oldNode->getKey()) % newCapacity;
+
+            Node<KeyType, ValueType> *nextNode = oldNode->getNext();
+            oldNode->setNext(newBuckets[newIndex]);
+            newBuckets[newIndex] = oldNode;
+
+            oldNode = nextNode;
+        }
+    }
+
+    delete[] buckets;
+    buckets = newBuckets;
+    capacity = newCapacity;
 }
 
 
@@ -83,6 +104,10 @@ void HashMap<KeyType, ValueType>::put(const KeyType &key, const ValueType &value
 
     }
 
+    if (capacity*LOAD_FACTOR_THRESHOLD<=count) {
+        resize();
+    }
+
 
 }
 
@@ -91,20 +116,20 @@ ValueType HashMap<KeyType, ValueType>::get(const KeyType &key) {
 
     size_t index = std::hash<KeyType>{}(key) % capacity;
 
-    if (buckets[index] == nullptr){
-        throw std::runtime_error("No key: " + key + " in map");
+    if (buckets[index] == nullptr) {
+        throw std::runtime_error("No such key in map");
     }
 
     Node<KeyType, ValueType> *node = buckets[index];
 
     do {
-        if(node->getKey() == key){
+        if (node->getKey() == key) {
             return node->getValue();
         }
         node = node->getNext();
     } while (node->getNext() != nullptr);
 
-    throw std::runtime_error("No key: " + key + " in map");
+    throw std::runtime_error("No such key in map");
 
 }
 
@@ -112,4 +137,14 @@ ValueType HashMap<KeyType, ValueType>::get(const KeyType &key) {
 template<typename KeyType, typename ValueType>
 bool HashMap<KeyType, ValueType>::isEmpty() {
     return count == 0;
+}
+
+template<typename KeyType, typename ValueType>
+size_t HashMap<KeyType, ValueType>::getCurrentSize() {
+    return capacity;
+}
+
+template<typename KeyType, typename ValueType>
+size_t HashMap<KeyType, ValueType>::getCount() {
+    return count;
 }

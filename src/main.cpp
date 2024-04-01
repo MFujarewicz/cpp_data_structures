@@ -9,17 +9,20 @@ int main() {
 //
 //    std::unordered_map<std::string, int> map;
 
-    HashMap<std::string, int> map;
+    HashMap<int, int> map;
 
-    map.put("aa", 1);
-    map.put("bb", 2);
-    map.put("cc", 3);
-    map.put("aa", 4);
+    for (int i=0; i<50; i++){
+        map.put(i, i);
+    }
+
+    for (int i=0; i<20; i++){
+        std::cout << map.get(i) << std::endl;
+    }
+
+    std::cout << map.getCurrentSize() << std::endl;
 
 
-    std::cout << map.get("aa") << std::endl;
-    std::cout << map.get("bb") << std::endl;
-    std::cout << map.get("cc") << std::endl;
+
 
 
 
