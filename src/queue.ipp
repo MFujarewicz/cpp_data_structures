@@ -28,7 +28,7 @@ QueueNode<T> *QueueNode<T>::getNext() {
 template<typename T>
 Queue<T>::Queue():count(0), headPtr(nullptr), tailPtr(nullptr) {
 
-    std::cout << "queue initialized" << std::endl;
+//    std::cout << "queue initialized" << std::endl;
 }
 
 

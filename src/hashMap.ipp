@@ -72,7 +72,7 @@ HashMap<KeyType, ValueType>::HashMap():count(0), capacity(INITIAL_CAPACITY) {
     }
 
 
-    std::cout << "hashmap initialized" << std::endl;
+//    std::cout << "hashmap initialized" << std::endl;
 }
 
 
