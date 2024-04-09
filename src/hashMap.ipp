@@ -78,6 +78,7 @@ HashMap<KeyType, ValueType>::HashMap():count(0), capacity(INITIAL_CAPACITY) {
 
 template<typename KeyType, typename ValueType>
 void HashMap<KeyType, ValueType>::put(const KeyType &key, const ValueType &value) {
+    std::lock_guard<std::mutex> lock(mutex);
 
 
     size_t index = std::hash<KeyType>{}(key) % capacity;
