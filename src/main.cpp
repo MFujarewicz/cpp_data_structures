@@ -126,7 +126,7 @@ void benchmarkHashMap(){
 
 int main() {
 
-//    benchmarkHashMap();
+    benchmarkHashMap();
     benchmarkQueue();
 
 //
