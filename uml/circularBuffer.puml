@@ -1,0 +1,58 @@
+@startuml
+
+
+
+
+
+/' Objects '/
+
+class CircularBuffer <template<typename T>> {
+	+CircularBuffer(size_t _capacity)
+	+getHeadValue() : T
+	+getTailValue() : T
+	+pop() : T
+	+isEmpty() : bool
+	+isFull() : bool
+	-capacity : size_t
+	-count : size_t
+	-head : size_t
+	-tail : size_t
+	-mutex : std::mutex
+	-data : std::vector<T>
+	+push(const T& value) : void
+}
+
+
+abstract class CircularBufferAbstract <template<typename T>> {
+	+{abstract} getHeadValue() : T
+	+{abstract} getTailValue() : T
+	+{abstract} pop() : T
+	+{abstract} isEmpty() : bool
+	+{abstract} isFull() : bool
+	+{abstract} push(const T& value) : void
+}
+
+
+
+
+
+/' Inheritance relationships '/
+
+.CircularBufferAbstract <|-- .CircularBuffer
+
+
+
+
+
+/' Aggregation relationships '/
+
+
+
+
+
+/' Nested objects '/
+
+
+
+@enduml
+

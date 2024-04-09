@@ -1,0 +1,64 @@
+@startuml
+
+
+
+
+
+/' Objects '/
+
+class HashMap <template<typename KeyType, typename ValueType>> {
+	+HashMap()
+	-buckets : Node<KeyType, ValueType>**
+	+get(const KeyType& key) : ValueType
+	+isEmpty() : bool
+	-{static} LOAD_FACTOR_THRESHOLD : constexpr static const double
+	-capacity : size_t
+	-count : size_t
+	+getCount() : size_t
+	+getCurrentSize() : size_t
+	-{static} INITIAL_CAPACITY : static const int
+	-mutex : std::mutex
+	+put(const KeyType& key, const ValueType& value) : void
+	-resize() : void
+}
+
+
+class Node <template<typename KeyType, typename ValueType>> {
+	+Node(KeyType _key, ValueType _value)
+	+getKey() : KeyType
+	-key : KeyType
+	+getNext() : Node<KeyType , ValueType>*
+	-next : Node<KeyType, ValueType>*
+	+getValue() : ValueType
+	-value : ValueType
+	+setNext(Node<KeyType, ValueType>* _next) : void
+	+setValue(const ValueType& value) : void
+}
+
+
+
+
+
+/' Inheritance relationships '/
+
+
+
+
+/' Aggregation relationships '/
+
+.HashMap *-- .Node
+
+
+.Node *-- .Node
+
+
+
+
+
+
+/' Nested objects '/
+
+
+
+@enduml
+
