@@ -1,0 +1,149 @@
+@startuml
+
+
+
+
+
+/' Objects '/
+
+abstract class AddTake <template<typename T>> {
+	+{abstract} take() : T
+	+{abstract} isEmpty() : bool
+	+{abstract} add(const T& value) : void
+}
+
+
+class CircularBuffer <template<typename T>> {
+	+CircularBuffer(size_t _capacity)
+	+getHeadValue() : T
+	+getTailValue() : T
+	+pop() : T
+	+take() : T
+	+isEmpty() : bool
+	+isFull() : bool
+	-capacity : size_t
+	-count : size_t
+	-head : size_t
+	-tail : size_t
+	-mutex : std::mutex
+	-data : std::vector<T>
+	+add(const T& value) : void
+	+push(const T& value) : void
+}
+
+
+abstract class CircularBufferAbstract <template<typename T>> {
+	+{abstract} getHeadValue() : T
+	+{abstract} getTailValue() : T
+	+{abstract} pop() : T
+	+{abstract} isEmpty() : bool
+	+{abstract} isFull() : bool
+	+{abstract} push(const T& value) : void
+}
+
+
+class HashMap <template<typename KeyType, typename ValueType>> {
+	+HashMap()
+	-buckets : Node<KeyType, ValueType>**
+	+get(const KeyType& key) : ValueType
+	+isEmpty() : bool
+	-{static} LOAD_FACTOR_THRESHOLD : constexpr static const double
+	-capacity : size_t
+	-count : size_t
+	+getCount() : size_t
+	+getCurrentSize() : size_t
+	-{static} INITIAL_CAPACITY : static const int
+	-mutex : std::mutex
+	+put(const KeyType& key, const ValueType& value) : void
+	-resize() : void
+}
+
+
+class Node <template<typename KeyType, typename ValueType>> {
+	+Node(KeyType _key, ValueType _value)
+	+getKey() : KeyType
+	-key : KeyType
+	+getNext() : Node<KeyType , ValueType>*
+	-next : Node<KeyType, ValueType>*
+	+getValue() : ValueType
+	-value : ValueType
+	+setNext(Node<KeyType, ValueType>* _next) : void
+	+setValue(const ValueType& value) : void
+}
+
+
+class Queue <template<typename T>> {
+	+Queue()
+	-headPtr : QueueNode<T>*
+	-tailPtr : QueueNode<T>*
+	+dequeue() : T
+	+take() : T
+	+isEmpty() : bool
+	-count : size_t
+	-mutex : std::mutex
+	+add(const T& value) : void
+	+enqueue(const T& value) : void
+}
+
+
+class QueueNode <template<typename T>> {
+	+QueueNode(T value)
+	+getNext() : QueueNode<T>*
+	-next : QueueNode<T>*
+	+getValue() : T
+	-value : T
+	+setNext(QueueNode<T>* nextNode) : void
+}
+
+
+class Tester <template<typename T>> {
+	+Tester(AddTake<T>& _container, std::string& name)
+	-container : AddTake<T>&
+	-name : std::string
+	+runTests() : void
+}
+
+
+
+
+
+/' Inheritance relationships '/
+
+.AddTake <|-- .CircularBufferAbstract
+
+
+.AddTake <|-- .Queue
+
+
+.CircularBufferAbstract <|-- .CircularBuffer
+
+
+
+
+
+/' Aggregation relationships '/
+
+.HashMap *-- .Node
+
+
+.Node *-- .Node
+
+
+.Queue "2" *-- .QueueNode
+
+
+.QueueNode *-- .QueueNode
+
+
+.Tester *-- .AddTake
+
+
+
+
+
+
+/' Nested objects '/
+
+
+
+@enduml
