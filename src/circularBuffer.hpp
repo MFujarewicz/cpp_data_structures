@@ -4,6 +4,7 @@
 #include <mutex>
 #include <iostream>
 #include <stdexcept>
+#include "addTake.hpp"
 
 /**
  * @brief Klasa abstrakcyjna definiująca interfejs dla bufora cyklicznego.
@@ -11,14 +12,14 @@
  * @tparam T Typ danych przechowywanych w buforze.
  */
 template<typename T>
-class CircularBufferAbstract {
+class CircularBufferAbstract : public AddTake<T>{
 public:
     /**
      * @brief Wstawia element do bufora.
      *
      * @param value Wartość do wstawienia.
      */
-    virtual void push(const T& value) = 0;
+    virtual void push(const T &value) = 0;
 
     /**
      * @brief Usuwa i zwraca element z początku bufora.
@@ -64,7 +65,7 @@ public:
  * @tparam T Typ danych przechowywanych w buforze.
  */
 template<typename T>
-class CircularBuffer : public CircularBufferAbstract<T>{
+class CircularBuffer : public CircularBufferAbstract<T> {
 private:
     std::vector<T> data; ///< Dane przechowywane w buforze.
     size_t head; ///< Indeks początku bufora.
@@ -78,7 +79,7 @@ public:
      *
      * @param _capacity Maksymalna pojemność bufora.
      */
-    CircularBuffer(size_t _capacity);
+    CircularBuffer(size_t _capacity = 20);
 
     /**
      * @brief Wstawia element do bufora.
@@ -123,6 +124,21 @@ public:
      * @return false Jeśli bufor nie jest pusty.
      */
     bool isEmpty();
+
+    /**
+     * @brief Wstawia element do bufora.
+     *
+     * @param value Wartość do wstawienia.
+     */
+    void add(const T &value);
+
+
+    /**
+     * @brief Usuwa i zwraca element z początku bufora.
+     *
+     * @return T Usunięty element.
+     */
+    T take();
 };
 
 #include "circularBuffer.ipp"

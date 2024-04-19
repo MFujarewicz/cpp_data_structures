@@ -64,6 +64,12 @@ T Queue<T>::dequeue() {
     return returnValue;
 }
 
+template<typename T>
+void Queue<T>::add(const T &value) { enqueue(value); }
+
+template<typename T>
+T Queue<T>::take() { return dequeue(); }
+
 
 template<typename T>
 bool Queue<T>::isEmpty() {

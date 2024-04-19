@@ -10,4 +10,7 @@ add_executable(cpp_projekt src/main.cpp
         src/queue.ipp
         src/hashMap.ipp
         src/hashMap.hpp
+        src/tester.hpp
+        src/tester.ipp
+        src/addTake.hpp
 )

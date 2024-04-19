@@ -65,3 +65,12 @@ bool CircularBuffer<T>::isEmpty() {
     return count == 0;
 }
 
+template<typename T>
+void CircularBuffer<T>::add(const T &value) {
+    push(value);
+}
+
+template<typename T>
+T CircularBuffer<T>::take() {
+    return pop();
+}

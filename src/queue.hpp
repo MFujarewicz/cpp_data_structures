@@ -3,6 +3,7 @@
 #include <mutex>
 #include <iostream>
 #include <stdexcept>
+#include "addTake.hpp"
 
 /**
  * @brief Węzeł kolejki przechowujący wartość i wskaźnik na kolejny węzeł.
@@ -51,7 +52,7 @@ public:
  * @tparam T Typ danych przechowywanych w kolejce.
  */
 template<typename T>
-class Queue {
+class Queue : public AddTake<T>{
 private:
     size_t count; ///< Liczba elementów w kolejce.
     std::mutex mutex; ///< Mutex do synchronizacji dostępu do kolejki.
@@ -85,6 +86,22 @@ public:
      * @return false Jeśli kolejka nie jest pusta.
      */
     bool isEmpty();
+
+
+    /**
+    * @brief Dodaje element na koniec kolejki.
+    *
+    * @param value Wartość do dodania.
+    */
+    void add(const T &value);
+
+
+    /**
+    * @brief Usuwa i zwraca element z początku kolejki.
+    *
+    * @return Usunięta wartość.
+    */
+    T take();
 };
 
 #include "queue.ipp"
