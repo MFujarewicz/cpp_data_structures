@@ -5,6 +5,7 @@
 #include "circularBuffer.hpp"
 #include "queue.hpp"
 #include "hashMap.hpp"
+#include "tester.hpp"
 #include <chrono>
 
 int HASHMAP_BENCHMARK = 50000000;
@@ -19,7 +20,7 @@ void benchmarkQueue(){
 
     //time enqueue
     for (int i=0; i<QUEUE_BENCHMARK; i++){
-        queue.enqueue(i);
+        queue.add(i);
     }
 
     auto end = std::chrono::high_resolution_clock::now();
@@ -126,8 +127,23 @@ void benchmarkHashMap(){
 
 int main() {
 
-    benchmarkHashMap();
-    benchmarkQueue();
+    CircularBuffer<int> circularBuffer;
+    std::string circularBufferTestName = "Circular Buffer Test";
+
+    Queue<int> queue;
+    std::string queueTestName = "Queue Test";
+
+
+    Tester<int> testerQueue(queue, queueTestName);
+    Tester<int> testerBuffer(circularBuffer, circularBufferTestName);
+
+    testerQueue.runTests();
+    testerBuffer.runTests();
+
+
+
+//    benchmarkHashMap();
+//    benchmarkQueue();
 
 //
 //    std::unordered_map<std::string, int> map;
@@ -157,46 +173,47 @@ int main() {
 
 
 //
-//
-////    Queue<int> queue;
-////    queue.enqueue(1);
-////    queue.enqueue(2);
-////    auto a = queue.dequeue();
-////    auto b = queue.dequeue();
-////    queue.enqueue(3);
-////    auto c = queue.dequeue();
 ////
+//    Queue<int> queue;
+//    queue.add(1);
+//    queue.add(2);
+//    auto a = queue.take();
+//    auto b = queue.take();
+//    queue.add(3);
+//    auto c = queue.take();
+//
+//
+//    std::cout << a << std::endl;
+//    std::cout << b << std::endl;
+//    std::cout << c << std::endl;
 ////
-////    std::cout << a << std::endl;
-////    std::cout << b << std::endl;
-////    std::cout << c << std::endl;
+//
+//
+//
+//
 ////
+//    CircularBuffer<int> circularBuffer;
+//    AddTake<int>& addTake = circularBuffer;
 //
 //
+//    addTake.add(1);
+//    addTake.add(2);
+//    addTake.add(3);
+//    addTake.add(4);
+//    addTake.add(5);
+//
+//    int d;
+//    d = addTake.take();
+//    d = addTake.take();
+//    d = addTake.take();
+//    d = addTake.take();
+//    d = addTake.take();
 //
 //
+//    std::cout << d  << std::endl;
 //
-//    CircularBuffer<int> buffer(5);
 //
-//
-//    buffer.push(1);
-//    buffer.push(2);
-//    buffer.push(3);
-//    buffer.push(4);
-//    buffer.push(5);
-//
-//    int a;
-//    a = buffer.pop();
-//    a = buffer.pop();
-//    a = buffer.pop();
-////    a = buffer.pop();
-//    a = buffer.pop();
-
-
-//    std::cout << a  << std::endl;
-
-
-    return 0;
+//    return 0;
 
 
 
