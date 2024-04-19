@@ -13,7 +13,7 @@ template<typename T>
 class QueueNode {
 private:
     T value; ///< Wartość przechowywana w węźle.
-    QueueNode<T>* next; ///< Wskaźnik na następny węzeł.
+    QueueNode<T> *next; ///< Wskaźnik na następny węzeł.
 
 public:
     /**
@@ -35,14 +35,14 @@ public:
      *
      * @param nextNode Wskaźnik na następny węzeł.
      */
-    void setNext(QueueNode<T>* nextNode);
+    void setNext(QueueNode<T> *nextNode);
 
     /**
      * @brief Pobiera wskaźnik na następny węzeł w kolejce.
      *
      * @return Wskaźnik na następny węzeł.
      */
-    QueueNode<T>* getNext();
+    QueueNode<T> *getNext();
 };
 
 /**
@@ -55,8 +55,8 @@ class Queue {
 private:
     size_t count; ///< Liczba elementów w kolejce.
     std::mutex mutex; ///< Mutex do synchronizacji dostępu do kolejki.
-    QueueNode<T>* headPtr; ///< Wskaźnik na początek kolejki.
-    QueueNode<T>* tailPtr; ///< Wskaźnik na koniec kolejki.
+    QueueNode<T> *headPtr; ///< Wskaźnik na początek kolejki.
+    QueueNode<T> *tailPtr; ///< Wskaźnik na koniec kolejki.
 
 public:
     /**

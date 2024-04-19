@@ -105,7 +105,7 @@ void HashMap<KeyType, ValueType>::put(const KeyType &key, const ValueType &value
 
     }
 
-    if (capacity*LOAD_FACTOR_THRESHOLD<=count) {
+    if (capacity * LOAD_FACTOR_THRESHOLD <= count) {
         resize();
     }
 
